@@ -6,11 +6,11 @@ const outputDirectory = "dist";
 
 module.exports = {
   entry: {
-    dashboard: ["babel-polyfill", "./src/client/dashboard/index.js"],
-    test: ["babel-polyfill", "./src/client/test/index.js"],
+    dashboard: "./src/client/views/dashboard/index.js",
+    app: ["babel-polyfill", "./src/client/index.js"],
   },
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -43,17 +43,14 @@ module.exports = {
       "/api": "http://localhost:8080",
     },
   },
+  mode: "development",
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       // inject: false,
-      template: "./src/client/views/dashboard/index.html",
+      // filename: "./test.html",
       // favicon: "./public/favicon.ico",
-    }),
-    new HtmlWebpackPlugin({
-      // inject: false,
-      template: "./src/client/views/test/index.html",
-      // favicon: "./public/favicon.ico",
+      template: "./public/index.html",
     }),
   ],
 };
